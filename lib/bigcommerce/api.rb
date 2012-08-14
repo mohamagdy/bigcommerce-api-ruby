@@ -30,12 +30,6 @@ module BigCommerce
       @connection.ca_file = path
     end
 
-    # Returns the date formatted as
-    # RFC 2822 string
-    def to_rfc2822(datetime)
-      datetime.strftime("%a, %d %b %Y %H:%M:%S %z")
-    end
-
     def get_time
       @connection.get '/time'
     end
@@ -68,7 +62,7 @@ module BigCommerce
       if date.is_a?(String)
         date = DateTime.parse(date)
       end
-      date = to_rfc2822(date)
+      date = date.rfc2822
       @connection.get('/orders', params.merge!(:min_date_created => CGI::escape(date)))
     end
 
