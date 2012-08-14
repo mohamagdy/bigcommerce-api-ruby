@@ -44,7 +44,7 @@ module BigCommerce
     
     def get_products_count(params={})
       min_date_modified = params.delete(:min_date_modified)
-      get_count @connection.get('/products/count', params, min_date_modified)
+      get_count @connection.get('/products/count', params, min_date_modified.rfc2822)
     end
 
     def get_categories
