@@ -25,8 +25,8 @@ module BigCommerce
       @configuration.ca_file = path
     end
 
-    def get(path, params=nil)
-      request(:get, path, nil, params)
+    def get(path, params = nil, modified_since = nil)
+      request(:get, path, nil, params, modified_since)
     end
 
     def post(path)
@@ -41,7 +41,7 @@ module BigCommerce
       request(:delete, path)
     end
 
-    def request(method, path, body = nil, params = {})
+    def request(method, path, body = nil, params = {}, modified_since = nil)
 
       url = @configuration[:store_url] + '/api/v2' + path
 
@@ -67,7 +67,8 @@ module BigCommerce
 
       request = case method
                   when :get then
-                    Net::HTTP::Get.new(uri.request_uri)
+                    req = Net::HTTP::Get.new(uri.request_uri)
+                    req['If-Modified-Since'] = modified_since if modified_since
                   when :post then
                     Net::HTTP::Post.new(uri.request_uri)
                   when :put then
