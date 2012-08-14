@@ -68,7 +68,6 @@ module BigCommerce
       request = case method
                   when :get then
                     req = Net::HTTP::Get.new(uri.request_uri)
-                    req['If-Modified-Since'] = modified_since if modified_since
                   when :post then
                     Net::HTTP::Post.new(uri.request_uri)
                   when :put then
@@ -76,11 +75,11 @@ module BigCommerce
                   when :delete then
                     Net::HTTP::Delete.new(uri.request_uri)
                 end
-
+      
       request.basic_auth(@configuration[:username], @configuration[:api_key])
       request.add_field 'Accept', 'application/json'
       request.add_field 'Content-Type', 'application/json'
-
+      request['If-Modified-Since'] = modified_since if modified_since
       response = http.request(request)
 
       return case response
