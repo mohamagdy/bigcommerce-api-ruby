@@ -50,11 +50,15 @@ module BigCommerce
     def get_categories
       @connection.get '/categories'
     end
-
+    
     def get_category(id)
       @connection.get '/categories/' + id.to_s
     end
-
+    
+    def get_product_options(product_id)
+      @connection.get "/product/#{product_id}/options"
+    end
+    
     def get_orders(params={})
       @connection.get('/orders', params)
     end
