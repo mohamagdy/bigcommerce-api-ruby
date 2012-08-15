@@ -48,6 +48,10 @@ module BigCommerce
       get_count @connection.get('/products/count', params, min_date_modified.rfc2822)
     end
 
+    def delete_product(product_id)
+      @connection.delete('/products/' + product_id)
+    end
+    
     def get_categories
       @connection.get '/categories'
     end
