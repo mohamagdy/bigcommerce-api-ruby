@@ -53,7 +53,7 @@ module BigCommerce
     end
     
     def update_product(product_id, params)
-      @connection.put('/products/' + product_id, params)
+      @connection.put('/products/' + product_id.to_s, params)
     end
     
     def get_categories
