@@ -81,10 +81,9 @@ module BigCommerce
       request.add_field 'Content-Type', 'application/json'
       request['If-Modified-Since'] = modified_since if modified_since
       request.set_form_data(params) if [:post, :put].include?(method)
+      p request, 'teeeeeeeeest'
       response = http.request(request)
-      
-      p response, 'teeeeeeeeeeeeeeeest'
-      
+
       return case response
                when Net::HTTPSuccess, Net::HTTPRedirection
                  JSON.parse(response.body || "{}")
