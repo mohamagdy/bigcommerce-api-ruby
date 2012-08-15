@@ -59,6 +59,10 @@ module BigCommerce
       @connection.get '/products/' + product_id.to_s + '/options'
     end
     
+    def get_product_skus(product_id)
+      @connection.get '/products/' + product_id.to_s + '/skus'
+    end
+    
     def get_orders(params={})
       @connection.get('/orders', params)
     end
