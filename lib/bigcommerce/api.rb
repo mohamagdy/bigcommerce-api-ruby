@@ -33,7 +33,8 @@ module BigCommerce
     def get_time
       @connection.get '/time'
     end
-
+    
+    # Products
     def get_products(params={})
       min_date_modified = params.delete(:min_date_modified)
       @connection.get('/products', params, min_date_modified.try(:rfc2822))
@@ -68,6 +69,7 @@ module BigCommerce
       @connection.get '/products/' + product_id.to_s + '/skus'
     end
     
+    # Categories
     def get_categories
       @connection.get '/categories'
     end
@@ -76,6 +78,7 @@ module BigCommerce
       @connection.get '/categories/' + id.to_s
     end
     
+    # Shipment
     def get_shipments(order_id)
       @connection.get('/orders/' + order_id.to_s + '/shipments')
     end
@@ -84,10 +87,19 @@ module BigCommerce
       @connection.get('/orders/' + order_id.to_s + '/shipments/' + shipment_id.to_s)
     end
     
+    def create_shipment(order_id, params)
+      @connection.post('/orders/' + order_id.to_s + '/shipments', params)
+    end
+    
     def update_shipment(order_id, shipment_id, params)
       @connection.put('/orders/' + order_id.to_s + '/shipments/' + shipment_id.to_s, params)
     end
     
+    def get_shipping_addresses(order_id)
+      @connection.get('/orders/' + order_id.to_s + '/shippingaddresses')
+    end
+    
+    # Orders
     def get_orders(params={})
       @connection.get('/orders', params)
     end
@@ -111,7 +123,8 @@ module BigCommerce
     def get_order_products(id)
       @connection.get '/orders/' + id.to_s + '/products'
     end
-
+    
+    # Customers
     def get_customers
       @connection.get '/customers'
     end
