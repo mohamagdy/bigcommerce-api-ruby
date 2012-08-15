@@ -45,7 +45,7 @@ module BigCommerce
 
       url = @configuration[:store_url] + '/api/v2' + path
 
-      param_string = hash_to_params(params) if !params.nil? && !params.empty? && [:post, :put].include?(method)
+      param_string = hash_to_params(params) if !params.nil? && !params.empty? && ![:post, :put].include?(method)
 
       unless (param_string.nil? || param_string.empty?)
         uri = URI.parse("#{url}?#{param_string}")
