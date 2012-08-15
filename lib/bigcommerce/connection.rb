@@ -67,7 +67,7 @@ module BigCommerce
 
       request = case method
                   when :get then
-                    req = Net::HTTP::Get.new(uri.request_uri)
+                    Net::HTTP::Get.new(uri.request_uri)
                   when :post then
                     Net::HTTP::Post.new(uri.request_uri)
                   when :put then
@@ -80,6 +80,7 @@ module BigCommerce
       request.add_field 'Accept', 'application/json'
       request.add_field 'Content-Type', 'application/json'
       request['If-Modified-Since'] = modified_since if modified_since
+      request.set_form_data(params) if [:post, :put].include?(method)
       response = http.request(request)
 
       return case response
