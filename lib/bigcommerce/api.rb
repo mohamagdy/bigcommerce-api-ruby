@@ -43,25 +43,21 @@ module BigCommerce
       @connection.get '/products/' + id.to_s
     end
     
+    def create_product(params)
+      @connection.post('/products', params) 
+    end
+    
     def get_products_count(params={})
       min_date_modified = params.delete(:min_date_modified)
       get_count @connection.get('/products/count', params, min_date_modified.rfc2822)
     end
 
     def delete_product(product_id)
-      @connection.delete('/products/' + product_id)
+      @connection.delete('/products/' + product_id.to_s)
     end
     
     def update_product(product_id, params)
       @connection.put('/products/' + product_id.to_s, params)
-    end
-    
-    def get_categories
-      @connection.get '/categories'
-    end
-    
-    def get_category(id)
-      @connection.get '/categories/' + id.to_s
     end
     
     def get_product_options(product_id)
@@ -70,6 +66,14 @@ module BigCommerce
     
     def get_product_skus(product_id)
       @connection.get '/products/' + product_id.to_s + '/skus'
+    end
+    
+    def get_categories
+      @connection.get '/categories'
+    end
+    
+    def get_category(id)
+      @connection.get '/categories/' + id.to_s
     end
     
     def get_orders(params={})

@@ -29,8 +29,8 @@ module BigCommerce
       request(:get, path, nil, params, modified_since)
     end
 
-    def post(path)
-      request(:post, path)
+    def post(path, params = nil)
+      request(:post, path, nil, params)
     end
 
     def put(path, params = nil)
