@@ -56,7 +56,7 @@ module BigCommerce
     end
     
     def get_product_options(product_id)
-      @connection.get "/product/#{product_id}/options"
+      @connection.get '/products/' + product_id.to_s + '/options'
     end
     
     def get_orders(params={})
