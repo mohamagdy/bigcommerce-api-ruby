@@ -35,7 +35,8 @@ module BigCommerce
     end
 
     def get_products(params={})
-      @connection.get('/products', params)
+      min_date_modified = params.delete(:min_date_modified)
+      @connection.get('/products', params, min_date_modified.rfc2822)
     end
 
     def get_product(id)
