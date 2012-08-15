@@ -52,7 +52,7 @@ module BigCommerce
       @connection.delete('/products/' + product_id)
     end
     
-    def update_product(product_id)
+    def update_product(product_id, params)
       @connection.put('/products/' + product_id, params)
     end
     
