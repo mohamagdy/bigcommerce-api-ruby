@@ -33,8 +33,8 @@ module BigCommerce
       request(:post, path)
     end
 
-    def put(path)
-      request(:put, path)
+    def put(path, params = nil)
+      request(:put, path, nil, params)
     end
 
     def delete(path)

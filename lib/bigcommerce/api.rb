@@ -52,6 +52,10 @@ module BigCommerce
       @connection.delete('/products/' + product_id)
     end
     
+    def update_product(product_id)
+      @connection.put('/products/' + product_id, params)
+    end
+    
     def get_categories
       @connection.get '/categories'
     end
