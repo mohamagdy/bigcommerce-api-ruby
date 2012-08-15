@@ -76,6 +76,10 @@ module BigCommerce
       @connection.get '/categories/' + id.to_s
     end
     
+    def get_shipments(order_id)
+      @connection.get('/orders/' + order_id.to_s + '/shipments')
+    end
+    
     def get_shipment(order_id, shipment_id)
       @connection.get('/orders/' + order_id.to_s + '/shipments/' + shipment_id.to_s)
     end
