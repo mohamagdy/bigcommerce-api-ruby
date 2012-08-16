@@ -126,6 +126,10 @@ module BigCommerce
       @connection.get '/orders/' + id.to_s + '/products'
     end
     
+    def get_order_statuses
+      @connection.get '/orderstatuses'
+    end
+    
     # Customers
     def get_customers
       @connection.get '/customers'
