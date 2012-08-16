@@ -50,7 +50,7 @@ module BigCommerce
     
     def get_products_count(params={})
       min_date_modified = params.delete(:min_date_modified)
-      get_count @connection.get('/products/count', params, min_date_modified.rfc2822)
+      get_count @connection.get('/products/count', params, min_date_modified.try(:rfc2822))
     end
 
     def delete_product(product_id)
@@ -102,7 +102,7 @@ module BigCommerce
     # Orders
     def get_orders(params={})
       min_date_modified = params.delete(:min_date_modified)
-      @connection.get('/orders', params, min_date_modified.rfc2822)
+      @connection.get('/orders', params, min_date_modified.try(:rfc2822))
     end
 
     def get_orders_by_date(date, params={})
@@ -115,7 +115,7 @@ module BigCommerce
 
     def get_orders_count(params={})
       min_date_modified = params.delete(:min_date_modified)
-      get_count @connection.get('/orders/count', params, min_date_modified.rfc2822)
+      get_count @connection.get('/orders/count', params, min_date_modified.try(:rfc2822))
     end
 
     def get_order(id)
