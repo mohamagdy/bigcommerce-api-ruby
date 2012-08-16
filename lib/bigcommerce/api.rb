@@ -121,7 +121,11 @@ module BigCommerce
     def get_order(id)
       @connection.get '/orders/' + id.to_s
     end
-
+    
+    def update_order(id, params)
+      @connection.put('/orders/' + id.to_s, params)
+    end
+    
     def get_order_products(id)
       @connection.get '/orders/' + id.to_s + '/products'
     end
