@@ -69,8 +69,8 @@ module BigCommerce
       @connection.get '/products/' + product_id.to_s + '/skus'
     end
     
-    def get_product_option_values(option_id)
-      @connection.get '/options/' + product_id.to_s + '/values'
+    def get_product_options_values(option_id)
+      @connection.get '/options/' + option_id.to_s + '/values'
     end
     
     # Categories
