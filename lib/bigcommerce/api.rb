@@ -73,6 +73,10 @@ module BigCommerce
       @connection.get '/options/' + option_id.to_s + '/values'
     end
     
+    def get_options
+      @connection.get '/options'
+    end
+    
     # Categories
     def get_categories
       @connection.get '/categories'
