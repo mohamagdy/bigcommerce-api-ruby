@@ -61,12 +61,13 @@ module BigCommerce
       @connection.put('/products/' + product_id.to_s, params)
     end
     
-    def get_product_options(product_id)
-      @connection.get '/products/' + product_id.to_s + '/options'
-    end
-    
     def get_product_skus(product_id)
       @connection.get '/products/' + product_id.to_s + '/skus'
+    end
+    
+    # Options
+    def get_product_options(product_id)
+      @connection.get '/products/' + product_id.to_s + '/options'
     end
     
     def get_product_options_values(option_id)
@@ -75,6 +76,10 @@ module BigCommerce
     
     def get_options
       @connection.get '/options'
+    end
+    
+    def get_option(option_id)
+      @connection.get '/options/' + option_id.to_s
     end
     
     # Categories
