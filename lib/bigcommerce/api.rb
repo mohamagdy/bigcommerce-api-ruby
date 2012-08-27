@@ -65,6 +65,20 @@ module BigCommerce
       @connection.get '/products/' + product_id.to_s + '/skus'
     end
     
+    def get_products_ids(min_date_modified)
+      max_limit = 250
+      total = get_products_count
+      pages = (total / max_limit).ceil
+      product_ids = []
+                          
+      1.upto(pages) do |page|
+        products = get_products({ :min_date_modified => min_date_modified, :page => page, :limit => max_limit }) 
+        products.each { |product| product_ids << product['id'] }
+      end
+      
+      product_ids       
+    end
+    
     # Options
     def get_product_options(product_id)
       @connection.get '/products/' + product_id.to_s + '/options'
