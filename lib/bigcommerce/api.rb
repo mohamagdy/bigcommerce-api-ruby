@@ -65,7 +65,7 @@ module BigCommerce
       @connection.get '/products/' + product_id.to_s + '/skus'
     end
     
-    def get_products_ids(min_date_modified)
+    def get_products_ids(min_date_modified=Time.parse('1970-01-01 00:00:00'))
       max_limit = 250
       total = get_products_count.to_f
       pages = (total / max_limit).ceil
