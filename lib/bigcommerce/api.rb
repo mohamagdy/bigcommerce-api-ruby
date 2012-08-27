@@ -70,7 +70,9 @@ module BigCommerce
       total = get_products_count
       pages = (total / max_limit).ceil
       product_ids = []
-                          
+      
+      p pages, total, 'aaaaaaaaaaaaaaaaaa'
+               
       1.upto(pages) do |page|
         products = get_products({ :min_date_modified => min_date_modified, :page => page, :limit => max_limit }) 
         products.each { |product| product_ids << product['id'] }
