@@ -67,12 +67,10 @@ module BigCommerce
     
     def get_products_ids(min_date_modified)
       max_limit = 250
-      total = get_products_count
+      total = get_products_count.to_f
       pages = (total / max_limit).ceil
       product_ids = []
       
-      p pages, total, 'aaaaaaaaaaaaaaaaaa'
-               
       1.upto(pages) do |page|
         products = get_products({ :min_date_modified => min_date_modified, :page => page, :limit => max_limit }) 
         products.each { |product| product_ids << product['id'] }
